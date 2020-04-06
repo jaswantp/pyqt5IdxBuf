@@ -209,9 +209,16 @@ class GraphicsObject:
         self.vao.bind()
         self.shaderProgram.setUniformValue(self.u_ColorIdx, self.color)
         self.shaderProgram.setUniformValue(self.u_MVPidx, self.mvpMatrix)
+        
+        # tri1 would be in the y-ve region and colored red.
         gl.glDrawElements(gl.GL_TRIANGLES, 3, self.idxdtype, None) # tri1
+        # tri2 would be in the y+ve region and colored green.
         self.shaderProgram.setUniformValue(self.u_ColorIdx, QtGui.QVector4D(0.0, 0.7, 0.3, 1.0))
         gl.glDrawElements(gl.GL_TRIANGLES, 3, self.idxdtype, ctypes.c_void_p(2)) # tri2.
+        
+        # I am aware that I might as well rotate tri1 by 180 degrees around z-axis, 
+        # and set u_color uniform value to green to achieve the desired effect. But I want
+        # to do it using indices. It seems better for a large number of objects.
 
         self.shaderProgram.release()
         self.vao.release()
