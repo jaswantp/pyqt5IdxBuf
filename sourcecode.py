@@ -6,10 +6,7 @@ from math import copysign
 import numpy
 from PyQt5 import QtGui, QtWidgets, QtCore
 
-SHADERPATH = "C:\\Users\\panchuj\\Work Folders\\tiara\\resources"
-
-
-# SHADERPATH = './'
+SHADERPATH = './'
 
 
 def parseShader(file: str, program: QtGui.QOpenGLShaderProgram):
